@@ -5,8 +5,8 @@ const DescriptionBox = (props) => {
 
     return ( 
         <div className="description-box">
-            <h1>Title: {props.title}</h1>
-            <span>Description{props.description}</span>
+            <h4>Title: {props.title}</h4>
+            <p>Description{props.description}</p>
         </div>
      );
 }

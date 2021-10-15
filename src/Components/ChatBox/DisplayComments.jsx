@@ -5,9 +5,9 @@ const DisplayComments = (props) => {
         <div>
             {props.comments.map(function(comment){
                 return(
-                    <div>
+                    <div className="comment-box">
                         <h6>{comment.content}</h6>
-                        <p>Likes:{comment.like_counter}  Dislikes:{comment.dislike_counter}</p>
+                        <p>Likes: {comment.like_counter}  Dislikes: {comment.dislike_counter}</p>
                     </div>    
                 )
             })}

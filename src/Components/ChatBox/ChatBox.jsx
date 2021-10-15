@@ -16,8 +16,12 @@ class ChatBox extends Component {
         }
     }
 
+    componentDidMount = ()=>{
+        this.getAllComments()
+    }
+
     async getAllComments(){
-        let response = await axios.get(`http://127.0.0.1:8000/${this.state.videoId}`);
+        let response = await axios.get(`http://127.0.0.1:8000/${this.state.videoId}/`);
         this.setState({
           comments: response.data
         });

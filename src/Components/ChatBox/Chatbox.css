@@ -7,3 +7,24 @@
     height: 50vh;
     overflow-y: scroll;
 }
+
+.comment-box{
+    background: linear-gradient(0deg, rgba(49, 49, 49, 0.628) 0%, rgba(255,255,255,0.20258525773590685) 50%);
+    border: solid black 2px;
+    border-radius: 5px;
+    margin: 8px;
+}
+
+h6 {
+    color: rgb(200,200,200);
+    padding-top: 3px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+p{    
+    color: rgb(180,180,180);
+    padding-left: 8px;
+    padding-right: 8px;
+    text-align: justify;
+}

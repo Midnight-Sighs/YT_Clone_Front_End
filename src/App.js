@@ -73,7 +73,6 @@ class App extends Component {
         <div className="container-fluid">
           <Header setSearch={this.setSearch}/> {/* Full width of screen*/}
         </div>
-        <ModalComment />
 
         {/* Need to create 2 columns for the rest */}
         <div className="container-fluid"> 
