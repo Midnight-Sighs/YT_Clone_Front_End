@@ -2,21 +2,18 @@ import React from 'react';
 import Submission from '../Submission/Submission'
 import './Header.css'
 
-const SearchBar = () => {
+const SearchBar = (props) => {
 
-        const{data, handleChange, handleSubmit } = Submission(search)
+        const{ data:searchTerm, handleChange, handleSubmit } = Submission(search)
 
-        const searchTerm = search()
-
-        function search(){
-            let searchTerm = data.searchTerm
-            return searchTerm
+        function search(searchTerm){
+           props.setSearch(searchTerm)
         }
 
         return(
             <div>
                 <form className="search-bar" onSubmit={handleSubmit}>
-                    <input className="search-field" type="text" placeholder="Find Your Rabbit Hole" name="searchTerm" value={data.searchTerm} onChange={handleChange}></input>
+                    <input className="search-field" type="text" name="searchTerm" defaultValue={searchTerm} placeholder="Find Your Rabbit Hole" onChange={handleChange}></input>
                     <button className="btns search" type="submit">Search</button>
                 </form>
             </div>

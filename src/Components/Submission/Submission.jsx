@@ -11,7 +11,7 @@ const Submission = (callback) =>{
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        callback();
+        callback(data.searchTerm);
     }
 
     return{
