@@ -6,8 +6,11 @@ const SearchBar = () => {
 
         const{data, handleChange, handleSubmit } = Submission(search)
 
+        const searchTerm = search()
+
         function search(){
-            alert(`This is your search Term ${data.searchTerm}`)
+            let searchTerm = data.searchTerm
+            return searchTerm
         }
 
         return(
@@ -18,6 +21,7 @@ const SearchBar = () => {
                 </form>
             </div>
         )
+        
 }
 
 export default SearchBar

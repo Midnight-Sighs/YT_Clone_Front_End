@@ -1,0 +1,33 @@
+.modal-edit{
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color:black;
+    display: flex;
+    align-items:left;
+    justify-content:center;
+}
+
+.modal-content-edit{
+    border:none;
+    background: linear-gradient(0deg, rgba(0,0,0,0.6283555658591562) 0%, rgba(255,255,255,0.20258525773590685) 100%);
+    background-color:rgb(49, 49, 49);
+}
+.modal-content-edit p{
+    color: rgb(205, 241, 255)
+}
+
+.modal-header-edit .modal-footer-edit{
+    padding: 10px;
+    border: none;
+}
+
+.modal-title-edit{
+    margin:0;
+}
+
+.modal-body-edit {
+    padding: 10px;
+}

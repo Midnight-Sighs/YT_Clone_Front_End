@@ -1,5 +1,6 @@
 import React from 'react';
 import Submission from '../Submission/Submission'
+import Modal from '../Modal/Modal'
 
 const NewCommentForm = () => {
     const { data, handleChange, handleSubmit } = Submission(comment);

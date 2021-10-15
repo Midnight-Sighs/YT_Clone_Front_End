@@ -1,0 +1,16 @@
+#ytplayer{
+    margin: 20px;
+    margin-left: 40px;
+}
+
+@media only screen and (max-width: 600px){
+
+}
+
+@media only screen and (min-width: 1800px){
+
+    #ytplayer{
+        width: 950px;
+        height: 500px;
+    }
+}
