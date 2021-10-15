@@ -1,0 +1,9 @@
+.lowest-chat-box{
+    background-color: rgb(75, 75, 75);
+    border: solid black 3px;
+    border-radius: 15px;
+    margin-top: 10px;
+    margin-left: 2em;
+    height: 50vh;
+    overflow-y: scroll;
+}

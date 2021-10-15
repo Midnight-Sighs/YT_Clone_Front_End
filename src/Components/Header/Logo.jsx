@@ -4,8 +4,8 @@ import './Header.css'
 
 function Logo() {
     return ( 
-        <div className='logo'>
-            <img src={logo}></img>
+        <div>
+            <img className="logo" src={logo}></img>
         </div>
      );
 }

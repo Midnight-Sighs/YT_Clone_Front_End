@@ -12,9 +12,9 @@ const SearchBar = () => {
 
         return(
             <div>
-                <form onSubmit={handleSubmit}>
-                    <input className="search-field" type="text" placeholder="Search Here" name="searchTerm" value={data.searchTerm} onChange={handleChange}></input>
-                    <button className="btns" type="submit">Search</button>
+                <form className="search-bar" onSubmit={handleSubmit}>
+                    <input className="search-field" type="text" placeholder="Find Your Rabbit Hole" name="searchTerm" value={data.searchTerm} onChange={handleChange}></input>
+                    <button className="btns search" type="submit">Search</button>
                 </form>
             </div>
         )

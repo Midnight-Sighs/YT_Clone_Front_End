@@ -1,0 +1,9 @@
+.description-box{
+    background-color: rgb(75, 75, 75);
+    border: solid black 3px;
+    border-radius: 15px;
+    margin-top: 4em;
+    margin-left: 2em;
+    height: 30vh;
+    overflow-y: scroll;
+}
