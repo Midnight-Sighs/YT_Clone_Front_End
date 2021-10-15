@@ -1,0 +1,7 @@
+.related-search-box{
+    background-color: rgb(75, 75, 75);
+    border: solid black 3px;
+    border-radius: 15px;
+    margin-left: 2em;
+    height: 20vh;
+}

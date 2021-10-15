@@ -6,6 +6,7 @@ import ChatBox from './Components/ChatBox/ChatBox'
 import DescriptionBox from './Components/DescriptionBox/DescriptionBox';
 import EmbeddedPlayer from './Components/EmbeddedPlayer/EmbeddedPlayer'
 import ModalComment from './Components/Modal/Modal'
+import RelatedSearch from './Components/RelatedSearch/RelatedSearch';
 
 
 class App extends Component {
@@ -20,6 +21,8 @@ class App extends Component {
       commentId: '',
       newComment: '',
       newReply: '',
+      thumbnailPic: '',
+      thumbnailDesc: '',
     };
   }
 
@@ -30,12 +33,13 @@ class App extends Component {
 
   getVideo = async (searchTerm) => {
     try{
-        let response = await axios.get(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${searchTerm}&type=video&videoEmbeddable=true&relevanceLanguage=EN&order=relevance&key=AIzaSyAENeS1XRaes8ZF_A4h9FzB5tUTYfMp46M`);
+        let response = await axios.get(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${searchTerm}&type=video&videoEmbeddable=true&relevanceLanguage=EN&order=relevance&key=AIzaSyDbUJDASYtcBDMWqkS2RwM40NuJogQcf8E`);
         this.setState({
           videoTitle:response.data.items[0].snippet.title,
           videoDescription:response.data.items[0].snippet.description,
           videoId:response.data.items[0].id.videoId
         })
+        this.getRelatedVideo()
     }
     catch (ex) {
         console.log('Error in getVideo API call', ex);
@@ -44,9 +48,10 @@ class App extends Component {
 
   getRelatedVideo = async () => {
     try{
-      let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?relatedToVideoId=${this.state.videoId}&maxResults=3&type=video&videoEmbeddable=true&relevanceLanguage=EN&order=relevance&key=AIzaSyAENeS1XRaes8ZF_A4h9FzB5tUTYfMp46M`);
+      let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=${this.state.videoId}&maxResults=3&type=video&videoEmbeddable=true&relevanceLanguage=EN&order=relevance&key=AIzaSyDbUJDASYtcBDMWqkS2RwM40NuJogQcf8E`);
       this.setState({
-        searchResults:response.data
+        searchResults:response.data,
+        thumbnailPic:response.data.items[0].snippet.thumbnails.default.url
       })
     }
     catch (ex){
@@ -58,8 +63,8 @@ class App extends Component {
     this.setState({
       searchTerm:data
     })
-    this.forceUpdate()
     this.getVideo(this.state.searchTerm)
+    this.getRelatedVideo()
   } 
 
   render(){
@@ -80,6 +85,8 @@ class App extends Component {
             </div>
             <div className = "col-8 evp">
               <EmbeddedPlayer videoId={this.state.videoId}/>
+              <br />
+              <RelatedSearch src={this.state.searchResults} />
             </div>
           </div>
         </div>
