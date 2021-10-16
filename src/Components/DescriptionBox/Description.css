@@ -5,19 +5,32 @@
     margin-top: 1em;
     margin-left: 2em;
     height: 30vh;
-    overflow-y: scroll;
+    position: relative;
 }
 
-.description-box h4{
+.description-text h5{
     color: rgb(200,200,200);
     padding-top: 3px;
     padding-left: 5px;
     padding-right: 5px;
 }
 
-.description-box p{
+.description-text p{
     color: rgb(180,180,180);
     padding-left: 8px;
     padding-right: 8px;
     text-align: justify;
+    z-index:1;
+}
+
+.description-text{
+    overflow-y: scroll;
+    height: 26vh;
+}
+
+.comment-btn{
+    position: absolute;
+    z-index:2;
+    right: 3em;
+    bottom: -1em;
 }

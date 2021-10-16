@@ -12,7 +12,7 @@ const ModalComment = (props) => {
     return (
       <>
         <button className="btns" onClick={handleShow}>
-          BUTTON
+          New Comment
         </button>
   
         <Modal

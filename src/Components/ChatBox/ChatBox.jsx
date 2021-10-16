@@ -13,6 +13,8 @@ class ChatBox extends Component {
             commentId: '',
             comments: [],
             replies: [],
+            newComment: '',
+            newReply: '',
         }
     }
 
@@ -20,12 +22,19 @@ class ChatBox extends Component {
         this.getAllComments()
     }
 
-    async getAllComments(){
+    async getAllComments(){ /* Gets comments related to the video */
         let response = await axios.get(`http://127.0.0.1:8000/${this.state.videoId}/`);
         this.setState({
           comments: response.data
         });
       }
+
+    async getAllReplies(){
+        let response = await axios.get(`http://127.0.0.1:8000/comments/${this.state.commentId}/replies/`);
+        this.setState({
+            replies: response.data
+        });
+    }
     
     render(){
         return ( 
