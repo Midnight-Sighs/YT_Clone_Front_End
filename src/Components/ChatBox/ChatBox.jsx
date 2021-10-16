@@ -23,17 +23,36 @@ class ChatBox extends Component {
     }
 
     async getAllComments(){ /* Gets comments related to the video */
-        let response = await axios.get(`http://127.0.0.1:8000/${this.state.videoId}/`);
-        this.setState({
-          comments: response.data
-        });
+        try{
+            let response = await axios.get(`http://127.0.0.1:8000/${this.state.videoId}/`);
+            this.setState({
+            comments: response.data
+            });
+        }
+        catch (ex){
+            console.log('No comments or Error getting Comments.')
+        }
       }
 
     async getAllReplies(){
-        let response = await axios.get(`http://127.0.0.1:8000/comments/${this.state.commentId}/replies/`);
-        this.setState({
-            replies: response.data
-        });
+        try{
+            let response = await axios.get(`http://127.0.0.1:8000/comments/${this.state.commentId}/replies/`);
+            this.setState({
+                replies: response.data
+            });
+        }
+        catch (ex){
+            console.log('No replies or error reaching replies')
+        }
+    }
+
+    async dislikeComment(){
+        try{
+            let response = await axios.patch(`http://127.0.0.1:8000/dislikes/${this.state.commentId}/`);
+        }
+        catch (ex){
+            console.log('Error getting likes')
+        }
     }
     
     render(){

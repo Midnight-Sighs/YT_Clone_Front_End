@@ -2,7 +2,7 @@ import React from 'react';
 
 const DisplayReplies = (props) => {
     return ( 
-        <div>
+        <div className="reply-box">
             {props.replies.map(function(reply){
                 return(
                     <div >
