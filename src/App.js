@@ -14,7 +14,9 @@ class App extends Component {
     super(props);
     this.state = {
       searchTerm: 'Find Your Rabbit Hole',
-      searchResults: {},
+      searchResults: {
+        items: []
+      },
       videoId: '',
       videoTitle: '',
       videoDescription:'',
