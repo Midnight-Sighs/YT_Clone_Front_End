@@ -21,3 +21,15 @@ p{
     padding-right: 8px;
     text-align: justify;
 }
+
+.reply-box{
+    display:none
+}
+
+.icon-btns{
+    background: none;
+    border:none;
+}
+.icons-btns:hover{
+    border:none;
+}
