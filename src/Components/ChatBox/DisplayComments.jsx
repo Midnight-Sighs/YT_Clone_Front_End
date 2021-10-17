@@ -10,12 +10,11 @@ const DisplayComments = (props) => {
             {props.comments.map(function(comment){
                 return(
                     <div className="comment-box">
-                        <div className="row show-me">
-                            <div className="col-9">
+                        <div className="row">
+                            <div className="col-9 comment-content">
                                 <h6>{comment.content}</h6>
-                                <DisplayReplies comment={comment}/>
                             </div>
-                            <div className="col-3">
+                            <div className="col-md-3">
                                 <div className="row pt-1">
                                     <Like comment={comment}/>
                                 </div>
@@ -31,6 +30,9 @@ const DisplayComments = (props) => {
                                 </div>
                             </div>
                         </div> 
+                        <div>
+                            <DisplayReplies comment={comment}/>
+                        </div>
                     </div>    
                 )
             })}

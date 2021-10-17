@@ -26,7 +26,7 @@ const DisplayReplies = (props) => {
 
     return ( 
         <>
-        <button onClick={onHideShowClick}>Replies</button>
+        <button className="btns reply-btn" onClick={onHideShowClick}>Replies</button>
         <div className="reply-box">
             {replies.map(function(reply){
                 return(
