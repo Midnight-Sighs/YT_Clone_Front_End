@@ -5,7 +5,6 @@ import Header from './Components/Header/Header'
 import ChatBox from './Components/ChatBox/ChatBox'
 import DescriptionBox from './Components/DescriptionBox/DescriptionBox';
 import EmbeddedPlayer from './Components/EmbeddedPlayer/EmbeddedPlayer'
-import ModalComment from './Components/Modal/Modal'
 import RelatedSearch from './Components/RelatedSearch/RelatedSearch';
 
 
@@ -17,7 +16,7 @@ class App extends Component {
       searchResults: {
         items: []
       },
-      videoId: '',
+      videoId: 'BlVYFxfRA',
       videoTitle: '',
       videoDescription:'',
       commentId: '',
@@ -74,6 +73,23 @@ class App extends Component {
     })
   }
 
+  newCommentState=(content)=>{
+    this.setState({
+        newComment: content
+    })
+    this.newCommentPost()
+  }
+
+  newCommentPost=()=> {
+    let newComment = {
+        "videoId": this.state.videoId,
+        "content": this.state.newComment,
+        "like_counter":0,
+        "dislike_counter":0
+    }
+    axios.post('http://127.0.0.1:8000/comments/', newComment)
+  }
+
   render(){
     return (
       <div className = 'bg'>
@@ -81,13 +97,12 @@ class App extends Component {
           <Header setSearch={this.setSearch} /> {/* Full width of screen*/}
         </div>
 
-        {/* Need to create 2 columns for the rest */}
         <div className="container-fluid"> 
           <div className = "row mt-2 mb-2">
             <div className = "col-4 dcr">
-              <DescriptionBox title={this.state.videoTitle} description={this.state.videoDescription} />
+              <DescriptionBox newComment={this.newCommentState} post={this.newCommentPost} title={this.state.videoTitle} description={this.state.videoDescription} />
               <br />
-              <ChatBox />
+              <ChatBox videoId={this.state.videoId}/>
             </div>
             <div className = "col-8 evp">
               <EmbeddedPlayer videoId={this.state.videoId} />

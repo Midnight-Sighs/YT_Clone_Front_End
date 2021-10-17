@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import './Modal.css'
 import { Modal } from 'react-bootstrap';
-import NewCommentForm from '../ChatBox/NewCommentForm';
+import NewCommentForm from '../NewInputs/NewCommentForm'
 
 const ModalComment = (props) => {
     const [show, setShow] = useState(false);
@@ -19,18 +19,18 @@ const ModalComment = (props) => {
           show={show}
           onHide={handleClose}
           backdrop="static"
-          keyboard={false}
+          keyboard={true}
+          className="modal"
         >
           <Modal.Header className="modal-content-edit">
-            <Modal.Title><h1>TITLE</h1></Modal.Title>
+            <Modal.Title><h1>New Comment</h1></Modal.Title>
           </Modal.Header>
           <Modal.Body className="modal-content-edit">
-            <NewCommentForm />
-            
+            <NewCommentForm newComment={props.newComment} post={props.post} close={handleClose}/> 
           </Modal.Body>
           <Modal.Footer className="modal-content-edit">
             <button className="btns" onClick={handleClose}>
-              Close
+              Exit (Without Saving)
             </button>
           </Modal.Footer>
         </Modal>

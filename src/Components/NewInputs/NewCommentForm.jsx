@@ -1,23 +1,29 @@
-import React from 'react';
-import Submission from '../Submission/Submission'
+import React, {useState} from 'react';
 
-const NewCommentForm = () => {
-    const { data, handleChange, handleSubmit } = Submission(comment);
 
-    function comment() {
-        alert(`${data.content}`)
+const NewCommentForm = (props) => {
+    
+    const[content, setContent] = useState('')
+
+    const handleChange = (event) =>{
+        setContent(event.target.value)
+    }
+
+    const handleSubmit = (event) =>{
+        event.preventDefault();
+        props.newComment(content)
+        props.close()
     }
 
     return (
         <div>
             <form onSubmit={handleSubmit}>
                 <label>
-                    Content:
                     <input
                         type='text'
                         name='content'
                         onChange={handleChange}
-                        value={data.content}
+                        value={content}
                     />
                 </label>
                 <button type='submit' className="btns">Submit</button>
