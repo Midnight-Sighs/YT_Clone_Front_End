@@ -13,6 +13,12 @@
     border: solid black 2px;
     border-radius: 5px;
     margin: 8px;
+    margin-bottom: 1.5em;
+    position:relative;
+}
+
+.comment-content{
+    padding-top: 1em;
 }
 
 p{    
@@ -21,9 +27,15 @@ p{
     padding-right: 8px;
     text-align: justify;
 }
-
 .reply-box{
-    display:none
+    margin-left: 3em;
+}
+
+.reply-btn{
+    margin-left: 12em;
+    z-index:2;
+    position: absolute;
+    bottom: -1em;
 }
 
 .icon-btns{
