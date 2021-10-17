@@ -1,22 +1,19 @@
 import React from 'react';
-import ThumnailTitle from './ThumbnailTitle';
-import Thumbnail from './Thumbnail'
+import VideoCard from './VideoCard';
 
-const VideoCards = (props)=> {
+const VideoCards = (props) => {
 
     return ( 
         <div className="related-search-box">
-            
             {props.src.items.map(source => {
                 return (
-                    <>
-                        <div><Thumbnail source={source} /></div>
-                        <div><ThumnailTitle source={source} /></div>
-                    </>
+                    <div>
+                        <VideoCard source={source} playClickedVideo={props.playClickedVideo} />
+                    </div>
                 )
             })}
         </div>
-     );
+    );
 }
 
 export default VideoCards;

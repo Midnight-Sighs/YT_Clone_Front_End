@@ -67,7 +67,15 @@ class App extends Component {
     })
     this.getVideo(this.state.searchTerm)
     this.getRelatedVideo()
-  } 
+  }
+
+  playClickedVideo = (videoItem) => {
+    this.setState({
+      videoTitle:videoItem.snippet.title,
+      videoDescription:videoItem.snippet.description,
+      videoId:videoItem.id.videoId
+    })
+  }
 
   render(){
     return (
@@ -87,7 +95,7 @@ class App extends Component {
             <div className = "col-8 evp">
               <EmbeddedPlayer videoId={this.state.videoId}/>
               <br />
-              <RelatedSearch src={this.state.searchResults} />
+              <RelatedSearch src={this.state.searchResults} playClickedVideo={this.playClickedVideo}/>
             </div>
           </div>
         </div>
