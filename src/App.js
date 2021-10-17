@@ -13,7 +13,7 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      searchTerm: 'Find Your Rabbit Hole',
+      searchTerm: 'Dungeons and Dragons',
       searchResults: {
         items: []
       },
@@ -23,57 +23,54 @@ class App extends Component {
       commentId: '',
       newComment: '',
       newReply: '',
-      thumbnailPic: '',
-      thumbnailDesc: '',
     };
   }
 
-
-  // componentDidMount =()=>{
-  //   this.getVideo(this.state.searchTerm)
-  // }
-
-  // getVideo = async (searchTerm) => {
-  //   try{
-  //       let response = await axios.get(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${searchTerm}&type=video&videoEmbeddable=true&relevanceLanguage=EN&order=relevance&key=AIzaSyAENeS1XRaes8ZF_A4h9FzB5tUTYfMp46M`);
-  //       this.setState({
-  //         videoTitle:response.data.items[0].snippet.title,
-  //         videoDescription:response.data.items[0].snippet.description,
-  //         videoId:response.data.items[0].id.videoId
-  //       })
-  //       this.getRelatedVideo()
-  //   }
-  //   catch (ex) {
-  //       console.log('Error in getVideo API call', ex);
-  //   }
-  // }
-
-  // getRelatedVideo = async () => {
-  //   try{
-  //     let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=${this.state.videoId}&maxResults=3&type=video&videoEmbeddable=true&relevanceLanguage=EN&order=relevance&key=AIzaSyAENeS1XRaes8ZF_A4h9FzB5tUTYfMp46M`);
-  //     this.setState({
-  //       searchResults:response.data,
-  //       thumbnailPic:response.data.items[0].snippet.thumbnails.default.url
-  //     })
-  //   }
-  //   catch (ex){
-  //     console.log('Error in getRelatedVideo API call', ex);
-  //   }
-  // }
-
-  setSearch = (data)=>{
-    this.setState({
-      searchTerm:data
-    })
+  componentDidMount = () => {
     this.getVideo(this.state.searchTerm)
-    this.getRelatedVideo()
+  }
+
+  getVideo = async () => {
+    try{
+        let response = await axios.get(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${this.state.searchTerm}&type=video&videoEmbeddable=true&relevanceLanguage=EN&order=relevance&key=AIzaSyAelmGFJtr_1u3hsNshTjVfIB0I0-mWuXc`);
+        this.setState({
+          videoTitle: response.data.items[0].snippet.title,
+          videoDescription: response.data.items[0].snippet.description,
+          videoId: response.data.items[0].id.videoId,
+        })
+        this.getRelatedVideo()
+    }
+    catch (ex) {
+        console.log('Error in getVideo API call', ex);
+    }
+  }
+
+  getRelatedVideo = async () => {
+    try{
+      let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=${this.state.videoId}&maxResults=3&type=video&videoEmbeddable=true&relevanceLanguage=EN&order=relevance&key=AIzaSyAelmGFJtr_1u3hsNshTjVfIB0I0-mWuXc`);
+      this.setState({
+        searchResults: response.data,
+      })
+    }
+    catch (ex){
+      console.log('Error in getRelatedVideo API call', ex);
+    }
+  }
+
+  setSearch = (searchObject) => {
+    let searchTerm = searchObject.searchTerm
+    this.setState({
+      searchTerm: searchTerm
+    }, () => {
+      this.getVideo(this.state.searchTerm)
+    });
   }
 
   playClickedVideo = (videoItem) => {
     this.setState({
-      videoTitle:videoItem.snippet.title,
-      videoDescription:videoItem.snippet.description,
-      videoId:videoItem.id.videoId
+      videoTitle: videoItem.snippet.title,
+      videoDescription: videoItem.snippet.description,
+      videoId: videoItem.id.videoId
     })
   }
 
@@ -81,7 +78,7 @@ class App extends Component {
     return (
       <div className = 'bg'>
         <div className="container-fluid">
-          <Header setSearch={this.setSearch}/> {/* Full width of screen*/}
+          <Header setSearch={this.setSearch} /> {/* Full width of screen*/}
         </div>
 
         {/* Need to create 2 columns for the rest */}
@@ -93,9 +90,9 @@ class App extends Component {
               <ChatBox />
             </div>
             <div className = "col-8 evp">
-              <EmbeddedPlayer videoId={this.state.videoId}/>
+              <EmbeddedPlayer videoId={this.state.videoId} />
               <br />
-              <RelatedSearch src={this.state.searchResults} playClickedVideo={this.playClickedVideo}/>
+              <RelatedSearch src={this.state.searchResults} playClickedVideo={this.playClickedVideo} />
             </div>
           </div>
         </div>
