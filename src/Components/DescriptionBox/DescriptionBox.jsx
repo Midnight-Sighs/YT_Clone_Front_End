@@ -13,7 +13,7 @@ const DescriptionBox = (props) => {
                 <p>{props.description}</p>
             </div>
             <div className="comment-btn">
-            <Modal newComment={props.newComment} />
+            <Modal newComment={props.newComment} post={props.post} />
             </div>
         </div>
         </>

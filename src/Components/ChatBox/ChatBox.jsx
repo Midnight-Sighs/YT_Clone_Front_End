@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import './Chatbox.css';
-import axios from 'axios';
 import DisplayComments from './DisplayComments'
 
 class ChatBox extends Component {

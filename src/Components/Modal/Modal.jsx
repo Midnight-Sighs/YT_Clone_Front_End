@@ -26,7 +26,7 @@ const ModalComment = (props) => {
             <Modal.Title><h1>New Comment</h1></Modal.Title>
           </Modal.Header>
           <Modal.Body className="modal-content-edit">
-            <NewCommentForm newComment={props.newComment} /> 
+            <NewCommentForm newComment={props.newComment} post={props.post} close={handleClose}/> 
           </Modal.Body>
           <Modal.Footer className="modal-content-edit">
             <button className="btns" onClick={handleClose}>

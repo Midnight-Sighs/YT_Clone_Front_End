@@ -1,12 +1,18 @@
-import React from 'react';
-import Submission from '../Submission/Submission'
+import React, {useState} from 'react';
 
 
 const NewCommentForm = (props) => {
-    const { data, handleChange, handleSubmit } = Submission(comment);
+    
+    const[content, setContent] = useState('')
 
-    function comment(){
-        props.newComment(data.content)
+    const handleChange = (event) =>{
+        setContent(event.target.value)
+    }
+
+    const handleSubmit = (event) =>{
+        event.preventDefault();
+        props.newComment(content)
+        props.close()
     }
 
     return (
@@ -17,7 +23,7 @@ const NewCommentForm = (props) => {
                         type='text'
                         name='content'
                         onChange={handleChange}
-                        value={data.content}
+                        value={content}
                     />
                 </label>
                 <button type='submit' className="btns">Submit</button>

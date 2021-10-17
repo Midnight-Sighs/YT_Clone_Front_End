@@ -5,7 +5,6 @@ import Header from './Components/Header/Header'
 import ChatBox from './Components/ChatBox/ChatBox'
 import DescriptionBox from './Components/DescriptionBox/DescriptionBox';
 import EmbeddedPlayer from './Components/EmbeddedPlayer/EmbeddedPlayer'
-import ModalComment from './Components/Modal/Modal'
 import RelatedSearch from './Components/RelatedSearch/RelatedSearch';
 
 
@@ -17,7 +16,7 @@ class App extends Component {
       searchResults: {
         items: []
       },
-      videoId: '',
+      videoId: 'BlVYFxfRA',
       videoTitle: '',
       videoDescription:'',
       commentId: '',
@@ -35,7 +34,7 @@ class App extends Component {
 
   getVideo = async (searchTerm) => {
     try{
-        let response = await axios.get(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${searchTerm}&type=video&videoEmbeddable=true&relevanceLanguage=EN&order=relevance&key=AIzaSyAENeS1XRaes8ZF_A4h9FzB5tUTYfMp46M`);
+        let response = await axios.get(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${searchTerm}&type=video&videoEmbeddable=true&relevanceLanguage=EN&order=relevance&key=AIzaSyAt0JL2pLqc_abwSbw0acykRf7sKX4wlYs`);
         this.setState({
           videoTitle:response.data.items[0].snippet.title,
           videoDescription:response.data.items[0].snippet.description,
@@ -50,7 +49,7 @@ class App extends Component {
 
   getRelatedVideo = async () => {
     try{
-      let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=${this.state.videoId}&maxResults=3&type=video&videoEmbeddable=true&relevanceLanguage=EN&order=relevance&key=AIzaSyAENeS1XRaes8ZF_A4h9FzB5tUTYfMp46M`);
+      let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=${this.state.videoId}&maxResults=3&type=video&videoEmbeddable=true&relevanceLanguage=EN&order=relevance&key=AIzaSyAt0JL2pLqc_abwSbw0acykRf7sKX4wlYs`);
       this.setState({
         searchResults:response.data,
         thumbnailPic:response.data.items[0].snippet.thumbnails.default.url
@@ -85,10 +84,9 @@ class App extends Component {
   }
 
   newCommentPost=()=> {
-    let newContent = `"${this.state.newComment}"`
     let newComment = {
-        "videoId":"WgrLrt4kyDM",
-        "content": newContent,
+        "videoId": this.state.videoId,
+        "content": this.state.newComment,
         "like_counter":0,
         "dislike_counter":0
     }
@@ -105,7 +103,7 @@ class App extends Component {
         <div className="container-fluid"> 
           <div className = "row mt-2 mb-2">
             <div className = "col-4 dcr">
-              <DescriptionBox newComment={this.newCommentState} title={this.state.videoTitle} description={this.state.videoDescription} />
+              <DescriptionBox newComment={this.newCommentState} post={this.newCommentPost} title={this.state.videoTitle} description={this.state.videoDescription} />
               <br />
               <ChatBox videoId={this.state.videoId}/>
             </div>

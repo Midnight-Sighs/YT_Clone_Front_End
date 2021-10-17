@@ -1,16 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 
 const Submission = (callback) =>{
 
     const[data, setValues] = useState('');
 
     const handleChange = (event) => {
-        event.persist();
+        event.preventDefault()
         setValues({ data, [event.target.name]: event.target.value });
     }
 
     const handleSubmit = (event) => {
-        event.preventDefault();
         callback(data);
     }
 
