@@ -1,18 +1,18 @@
 import React from 'react';
 import Submission from '../Submission/Submission'
 
-const NewCommentForm = () => {
+
+const NewCommentForm = (props) => {
     const { data, handleChange, handleSubmit } = Submission(comment);
 
-    function comment() {
-        alert(`${data.content}`)
+    function comment(){
+        props.newComment(data.content)
     }
 
     return (
         <div>
             <form onSubmit={handleSubmit}>
                 <label>
-                    Content:
                     <input
                         type='text'
                         name='content'
