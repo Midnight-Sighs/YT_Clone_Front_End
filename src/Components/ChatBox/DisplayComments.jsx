@@ -1,6 +1,7 @@
 import React from 'react';
 import Like from './Like'
 import Dislike from './Dislike'
+import DisplayReplies from './DisplayReplies.jsx'
 
 const DisplayComments = (props) => {
 
@@ -9,9 +10,10 @@ const DisplayComments = (props) => {
             {props.comments.map(function(comment){
                 return(
                     <div className="comment-box">
-                        <div className="row">
+                        <div className="row show-me">
                             <div className="col-9">
                                 <h6>{comment.content}</h6>
+                                <DisplayReplies comment={comment}/>
                             </div>
                             <div className="col-3">
                                 <div className="row pt-1">
@@ -28,7 +30,7 @@ const DisplayComments = (props) => {
                                     <Dislike comment={comment} />
                                 </div>
                             </div>
-                        </div>
+                        </div> 
                     </div>    
                 )
             })}
