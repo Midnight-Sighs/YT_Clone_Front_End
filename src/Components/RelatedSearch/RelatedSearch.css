@@ -1,7 +1,21 @@
-.related-search-box{
-    background-color: rgb(75, 75, 75);
-    border: solid black 3px;
-    border-radius: 15px;
-    margin-left: 2em;
-    height: 20vh;
+.related-search-box {
+  background-color: rgb(75, 75, 75);
+  border: solid black 3px;
+  border-radius: 15px;
+  margin-left: 2em;
+  height: 20vh;
+}
+
+.related-cards {
+  display: flex;
+  flex-direction: row;
+}
+
+.related-card {
+  margin-left: 20px;
+  width: 33%;
+}
+
+.thumbnail-title {
+  color: rgb(200, 200, 200);
 }
