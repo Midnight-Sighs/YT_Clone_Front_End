@@ -29,7 +29,7 @@ const DisplayComments = (props) => {
                             <ReplyModal commentId={comment.id} newReply={props.newReply}/>
                         </div>
                         <div>
-                            <DisplayReplies replies={props.replies} comment={comment}/>
+                            <DisplayReplies comment={comment}/>
                         </div>
                     </div>    
                 )

@@ -23,7 +23,6 @@ class App extends Component {
       newComment: '',
       newReply: '',
       comments: [],
-      replies: [],
     };
   }
 
@@ -32,11 +31,11 @@ class App extends Component {
     this.getAllComments();
   }
 
+  //Axios Calls
   //#region
-  // Axios Calls
   getVideo = async () => {
     try{
-        let response = await axios.get(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${this.state.searchTerm}&type=video&videoEmbeddable=true&relevanceLanguage=EN&order=relevance&key=AIzaSyAelmGFJtr_1u3hsNshTjVfIB0I0-mWuXc`);
+        let response = await axios.get(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${this.state.searchTerm}&type=video&videoEmbeddable=true&relevanceLanguage=EN&order=relevance&key=AIzaSyAt0JL2pLqc_abwSbw0acykRf7sKX4wlYs`);
         this.setState({
           videoTitle: response.data.items[0].snippet.title,
           videoDescription: response.data.items[0].snippet.description,
@@ -52,7 +51,7 @@ class App extends Component {
 
   getRelatedVideo = async () => {
     try{
-      let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=${this.state.videoId}&maxResults=4&type=video&videoEmbeddable=true&relevanceLanguage=EN&order=relevance&key=AIzaSyAelmGFJtr_1u3hsNshTjVfIB0I0-mWuXc`);
+      let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=${this.state.videoId}&maxResults=4&type=video&videoEmbeddable=true&relevanceLanguage=EN&order=relevance&key=AIzaSyAt0JL2pLqc_abwSbw0acykRf7sKX4wlYs`);
       this.setState({
         searchResults: response.data,
       })
@@ -71,18 +70,6 @@ class App extends Component {
     }
     catch (ex){
         console.log('Error in getAllComments API call.', ex)
-    }
-  }
-
-  getAllReplies = async () => {
-    try{
-        let response = await axios.get(`http://127.0.0.1:8000/comments/${this.state.commentId}/replies/`);
-        this.setState({
-          replies: response.data
-        })
-    }
-    catch (ex){
-        console.log('Error in getAllReplies API call', ex)
     }
   }
 
@@ -167,7 +154,7 @@ class App extends Component {
             <div className = "col-4 dcr">
               <DescriptionBox newComment={this.newCommentState} post={this.newCommentPost} title={this.state.videoTitle} description={this.state.videoDescription} />
               <br />
-              <ChatBox replies={this.replies} newReply={this.newReplyState} comments={this.state.comments} videoId={this.state.videoId}/>
+              <ChatBox newReply={this.newReplyState} comments={this.state.comments} videoId={this.state.videoId}/>
             </div>
             <div className = "col-8 evp">
               <EmbeddedPlayer videoId={this.state.videoId} />
