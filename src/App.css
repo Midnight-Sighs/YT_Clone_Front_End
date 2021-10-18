@@ -37,9 +37,17 @@
   margin-top: 5px;
 }
 
+::-webkit-scrollbar-track-piece{
+  background-color: rgb(50,50,50);
+}
+
 ::-webkit-scrollbar-thumb{
   background: black;
   border-radius: 5px;
+}
+
+::-webkit-scrollbar-corner{
+  background-color: black;
 }
 
 h1, h6, h4 {

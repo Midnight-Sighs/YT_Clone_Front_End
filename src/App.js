@@ -34,7 +34,7 @@ class App extends Component {
 
   getVideo = async (searchTerm) => {
     try{
-        let response = await axios.get(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${searchTerm}&type=video&videoEmbeddable=true&relevanceLanguage=EN&order=relevance&key=AIzaSyAt0JL2pLqc_abwSbw0acykRf7sKX4wlYs`);
+        let response = await axios.get(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${searchTerm}&type=video&videoEmbeddable=true&relevanceLanguage=EN&order=relevance&key=AIzaSyAENeS1XRaes8ZF_A4h9FzB5tUTYfMp46M`);
         this.setState({
           videoTitle:response.data.items[0].snippet.title,
           videoDescription:response.data.items[0].snippet.description,
@@ -49,7 +49,7 @@ class App extends Component {
 
   getRelatedVideo = async () => {
     try{
-      let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=${this.state.videoId}&maxResults=3&type=video&videoEmbeddable=true&relevanceLanguage=EN&order=relevance&key=AIzaSyAt0JL2pLqc_abwSbw0acykRf7sKX4wlYs`);
+      let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=${this.state.videoId}&maxResults=3&type=video&videoEmbeddable=true&relevanceLanguage=EN&order=relevance&key=AIzaSyAENeS1XRaes8ZF_A4h9FzB5tUTYfMp46M`);
       this.setState({
         searchResults:response.data,
         thumbnailPic:response.data.items[0].snippet.thumbnails.default.url
