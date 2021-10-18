@@ -1,7 +1,4 @@
 .related-search-box {
-  background-color: rgb(75, 75, 75);
-  border: solid black 3px;
-  border-radius: 15px;
   margin-left: 2em;
   height: 20vh;
 }
@@ -9,13 +6,38 @@
 .related-cards {
   display: flex;
   flex-direction: row;
+  width:720px;
 }
 
 .related-card {
-  margin-left: 20px;
-  width: 33%;
+  margin-left: 10px;
+  width: 25%;
+  height: 125px;
+  border: solid white 1px;
+  border-radius: 15px;
+  position:relative;
 }
 
 .thumbnail-title {
-  color: rgb(200, 200, 200);
+  color: #c2c5c9;
+  height: 100px;
+  overflow: hidden;
+  text-align: center;
+  padding-top: .5em;
+  padding-left: .5em;
+  padding-right: .5em;
+}
+
+.thumbnail-pic{
+  padding-left:10px;
+  width: 150px;
+  padding-top: .5em;
+  cursor:pointer;
+  border-radius: 10px;
+  position: absolute;
+}
+
+.thumbnail-pic:hover{
+  background: white;
+  opacity:10%;
 }

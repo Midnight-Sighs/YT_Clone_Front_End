@@ -7,13 +7,12 @@ const VideoCard = (props) => {
     return ( 
         <>
             <div>
-                <Thumbnail source={props.source} />
+                <Thumbnail source={props.source} playClickedVideo={props.playClickedVideo}/>
             </div>
             <div>
                 <ThumnailTitle source={props.source} />
             </div>
-           <button className='btns' onClick={event => props.playClickedVideo(props.source)}>Play Video</button>
-        </>
+           </>
     );
 }
 

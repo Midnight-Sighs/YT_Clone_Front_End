@@ -1,10 +1,10 @@
 .lowest-chat-box{
-    background-color: rgb(75, 75, 75);
+    background-color: #22262d;
     border: solid black 3px;
     border-radius: 15px;
     margin-top: 10px;
     margin-left: 2em;
-    height: 50vh;
+    height: 60vh;
     overflow-y: scroll;
     word-wrap: break-word;
 }
@@ -23,17 +23,24 @@
 }
 
 p{    
-    color: rgb(180,180,180);
+    color: #c2c5c9;
     padding-left: 8px;
     padding-right: 8px;
     text-align: justify;
 }
 .reply-box{
     margin-left: 3em;
+    margin-bottom:1.5em;
 }
 
 .reply-btn{
     margin-left: 12em;
+    z-index:2;
+    position: absolute;
+    bottom: -1em;
+}
+.new-reply-btn{
+    margin-left: 5em;
     z-index:2;
     position: absolute;
     bottom: -1em;

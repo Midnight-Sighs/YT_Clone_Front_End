@@ -1,5 +1,5 @@
 .description-box{
-    background-color: rgb(75, 75, 75);
+    background-color: #22262d;
     border: solid black 3px;
     border-radius: 15px;
     margin-top: 1em;
@@ -9,14 +9,14 @@
 }
 
 .description-text h5{
-    color: rgb(200,200,200);
+    color: #c2c5c9;
     padding-top: 3px;
     padding-left: 5px;
     padding-right: 5px;
 }
 
 .description-text p{
-    color: rgb(180,180,180);
+    color: #c2c5c9;
     padding-left: 8px;
     padding-right: 8px;
     text-align: justify;
@@ -34,4 +34,10 @@
     z-index:2;
     right: 3em;
     bottom: -1em;
+}
+
+.modal-field{
+    height: 6em;
+    width: 15em;
+    margin: 1em;
 }

@@ -1,24 +1,31 @@
-import React from 'react';
-import Submission from '../Submission/Submission'
+import React, {useState} from 'react';
 
-const ReplyInputForm = () => {
-    const { data, handleChange, handleSubmit } = Submission(comment);
+const ReplyInputForm = (props) => {
 
-    function comment() {
-        alert(`${data.content}`)
+    const[content, setContent] = useState('')
+
+    const handleChange = (event) =>{
+        setContent(event.target.value)
+    }
+
+    const handleSubmit = (event) =>{
+        event.preventDefault();
+        props.newReply(content, props.commentId)
+        props.close()
     }
 
     return (
         <div>
             <form onSubmit={handleSubmit}>
                 <label>
-                    Content:
-                    <input
+                    <textarea
                         type='text'
                         name='content'
+                        placeholder='Your Reply Here'
                         onChange={handleChange}
-                        value={data.content}
-                    />
+                        value={content}
+                        className="modal-field"
+                    ></textarea>
                 </label>
                 <button type='submit' className="btns">Submit</button>
             </form>

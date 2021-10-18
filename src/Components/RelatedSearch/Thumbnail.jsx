@@ -4,7 +4,7 @@ const Thumbnail = (props) => {
 
     return ( 
         <div>
-            <img src = {props.source.snippet.thumbnails.default.url}></img>
+            <img className="thumbnail-pic" src = {props.source.snippet.thumbnails.default.url} onClick={event => props.playClickedVideo(props.source)} ></img>
         </div>
     );
 }

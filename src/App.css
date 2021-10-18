@@ -1,20 +1,20 @@
 .bg{
-  background-color: rgb(25, 25, 25);
+  background-color: #0e1117;
 }
 
 .form-field{
   padding-left: 10px;
-  background-color:rgb(50,50,50);
+  background-color:#22262d;
   border:none;
   border-radius: 5px;
-  color: rgb(180,180,180)
+  color: #c2c5c9;
 }
 
 .btns{
-  background-color:rgb(50, 50, 50);
+  background-color:#171b22;
   border: solid 2 px black;
   border-radius: 5px;
-  color: rgb(180,180,180);
+  color: #c2c5c9;
 }
 
 .dcr{
@@ -38,7 +38,7 @@
 }
 
 ::-webkit-scrollbar-track-piece{
-  background-color: rgb(50,50,50);
+  background-color:  #0e1117;
 }
 
 ::-webkit-scrollbar-thumb{
@@ -55,4 +55,11 @@ h1, h6, h4 {
   padding-top: 3px;
   padding-left: 5px;
   padding-right: 5px;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
 }

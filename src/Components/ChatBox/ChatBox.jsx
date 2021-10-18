@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import './Chatbox.css';
-import axios from 'axios';
 import DisplayComments from './DisplayComments'
 
 class ChatBox extends Component {
@@ -17,7 +16,7 @@ class ChatBox extends Component {
     render(){
         return ( 
             <div className="lowest-chat-box">
-                <DisplayComments comments={this.props.comments} />
+                <DisplayComments replies={this.props.replies} newReply={this.props.newReply} comments={this.props.comments} />
                 
             </div>
         );
