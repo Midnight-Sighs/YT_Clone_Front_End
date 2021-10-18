@@ -2,15 +2,16 @@ import React, { useState} from 'react';
 
 const Submission = (callback) =>{
 
-    const[data, setValues] = useState('');
+    const[data, setValues] = useState({});
 
     const handleChange = (event) => {
-        event.preventDefault()
-        setValues({ data, [event.target.name]: event.target.value });
+        event.persist();
+        setValues({ ...data, [event.target.name]: event.target.value });
     }
 
     const handleSubmit = (event) => {
-        callback(data);
+        event.preventDefault();
+        callback();
     }
 
     return{
@@ -18,7 +19,6 @@ const Submission = (callback) =>{
         handleChange,
         handleSubmit,
     };
-
 }
 
 export default Submission

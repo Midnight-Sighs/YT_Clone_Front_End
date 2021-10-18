@@ -12,35 +12,37 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      searchTerm: 'Find Your Rabbit Hole',
+      searchTerm: 'Dungeons and Dragons',
       searchResults: {
         items: []
       },
-      videoId: 'BlVYFxfRA',
+      videoId: '',
       videoTitle: '',
       videoDescription:'',
       commentId: '',
       newComment: '',
       newReply: '',
-      thumbnailPic: '',
-      thumbnailDesc: '',
+      comments: [],
     };
   }
 
-
-  componentDidMount =()=>{
-    this.getVideo(this.state.searchTerm)
+  componentDidMount = () => {
+    this.getVideo(this.state.searchTerm);
+    this.getAllComments();
   }
 
-  getVideo = async (searchTerm) => {
+  //#region
+  // Axios Calls
+  getVideo = async () => {
     try{
-        let response = await axios.get(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${searchTerm}&type=video&videoEmbeddable=true&relevanceLanguage=EN&order=relevance&key=AIzaSyAENeS1XRaes8ZF_A4h9FzB5tUTYfMp46M`);
+        let response = await axios.get(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${this.state.searchTerm}&type=video&videoEmbeddable=true&relevanceLanguage=EN&order=relevance&key=AIzaSyCI3phO0sFUYY_0PnAha7ktzHJMH99UBBw`);
         this.setState({
-          videoTitle:response.data.items[0].snippet.title,
-          videoDescription:response.data.items[0].snippet.description,
-          videoId:response.data.items[0].id.videoId
+          videoTitle: response.data.items[0].snippet.title,
+          videoDescription: response.data.items[0].snippet.description,
+          videoId: response.data.items[0].id.videoId,
         })
         this.getRelatedVideo()
+        this.getAllComments()
     }
     catch (ex) {
         console.log('Error in getVideo API call', ex);
@@ -49,10 +51,9 @@ class App extends Component {
 
   getRelatedVideo = async () => {
     try{
-      let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=${this.state.videoId}&maxResults=3&type=video&videoEmbeddable=true&relevanceLanguage=EN&order=relevance&key=AIzaSyAENeS1XRaes8ZF_A4h9FzB5tUTYfMp46M`);
+      let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=${this.state.videoId}&maxResults=3&type=video&videoEmbeddable=true&relevanceLanguage=EN&order=relevance&key=AIzaSyCI3phO0sFUYY_0PnAha7ktzHJMH99UBBw`);
       this.setState({
-        searchResults:response.data,
-        thumbnailPic:response.data.items[0].snippet.thumbnails.default.url
+        searchResults: response.data,
       })
     }
     catch (ex){
@@ -60,44 +61,69 @@ class App extends Component {
     }
   }
 
-  setSearch = (data)=>{
+  async getAllComments(){ /* Gets comments related to the video */
+    try{
+        let response = await axios.get(`http://127.0.0.1:8000/${this.state.videoId}/`);
+        this.setState({
+        comments: response.data
+        });
+    }
+    catch (ex){
+        console.log('Error in getAllComments API call.', ex)
+    }
+  }
+
+  async postComment(){ /* Gets comments related to the video */
+    let newComment = {
+      "videoId": this.state.videoId,
+      "content": this.state.newComment,
+      "like_counter":0,
+      "dislike_counter":0
+    }
+    try{
+      await axios.post('http://127.0.0.1:8000/comments/', newComment);
+      this.getAllComments();
+    }
+    catch (ex){
+      console.log('Error in postComment API call.', ex)
+    }
+  }
+
+  //#endregion
+
+  setSearch = (searchObject) => {
+    let searchTerm = searchObject.searchTerm
     this.setState({
-      searchTerm:data
-    })
-    this.getVideo(this.state.searchTerm)
-    this.getRelatedVideo()
+      searchTerm: searchTerm
+    }, () => {
+      this.getVideo(this.state.searchTerm)
+    });
   }
 
   playClickedVideo = (videoItem) => {
     this.setState({
-      videoTitle:videoItem.snippet.title,
-      videoDescription:videoItem.snippet.description,
-      videoId:videoItem.id.videoId
-    })
+      comments: [],
+      videoTitle: videoItem.snippet.title,
+      videoDescription: videoItem.snippet.description,
+      videoId: videoItem.id.videoId
+    }, () => {
+      this.getAllComments()
+    });
   }
 
   newCommentState=(content)=>{
     this.setState({
         newComment: content
-    })
-    this.newCommentPost()
-  }
-
-  newCommentPost=()=> {
-    let newComment = {
-        "videoId": this.state.videoId,
-        "content": this.state.newComment,
-        "like_counter":0,
-        "dislike_counter":0
-    }
-    axios.post('http://127.0.0.1:8000/comments/', newComment)
+    }, () =>{
+      this.postComment();
+    });
   }
 
   render(){
     return (
       <div className = 'bg'>
         <div className="container-fluid">
-          <Header setSearch={this.setSearch}/> {/* Full width of screen*/}
+          <Header setSearch={this.setSearch} /> {/* Full width of screen*/}
         </div>
 
         <div className="container-fluid"> 
@@ -105,12 +131,12 @@ class App extends Component {
             <div className = "col-4 dcr">
               <DescriptionBox newComment={this.newCommentState} post={this.newCommentPost} title={this.state.videoTitle} description={this.state.videoDescription} />
               <br />
-              <ChatBox videoId={this.state.videoId}/>
+              <ChatBox comments={this.state.comments} videoId={this.state.videoId}/>
             </div>
             <div className = "col-8 evp">
-              <EmbeddedPlayer videoId={this.state.videoId}/>
+              <EmbeddedPlayer videoId={this.state.videoId} />
               <br />
-              <RelatedSearch src={this.state.searchResults} playClickedVideo={this.playClickedVideo}/>
+              <RelatedSearch src={this.state.searchResults} playClickedVideo={this.playClickedVideo} />
             </div>
           </div>
         </div>

@@ -47,7 +47,7 @@
 }
 
 ::-webkit-scrollbar-corner{
-  background-color: black;
+  display:none;
 }
 
 h1, h6, h4 {

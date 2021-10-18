@@ -1,9 +1,10 @@
 import React from 'react';
+import './RelatedSearch.css'
 
 const ThumbnailTitle = (props) => {
 
     return ( 
-        <div>{props.source.snippet.title}</div>
+        <div className='thumbnail-title'>{props.source.snippet.title}</div>
     );
 }
 

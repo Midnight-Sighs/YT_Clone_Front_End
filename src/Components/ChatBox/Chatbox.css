@@ -6,6 +6,7 @@
     margin-left: 2em;
     height: 50vh;
     overflow-y: scroll;
+    word-wrap: break-word;
 }
 
 .comment-box{
@@ -14,7 +15,7 @@
     border-radius: 5px;
     margin: 8px;
     margin-bottom: 1.5em;
-    position:relative;
+    position:relative;  
 }
 
 .comment-content{
