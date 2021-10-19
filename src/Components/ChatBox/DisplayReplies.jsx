@@ -5,6 +5,7 @@ const DisplayReplies = (props) => {
 
     const[replies, setReplies] = useState([])
     const[hideShow, setHideShow] = useState(false)
+    const[newReply, setNewReply] =useState([])
 
     const getAllReplies = async() =>{
         try{
@@ -18,7 +19,13 @@ const DisplayReplies = (props) => {
 
     useEffect(()=>{
         getAllReplies();
-    },[]);
+    },[props.comment]);
+
+    useEffect(()=>{
+        let newReplyObject = {comment:props.comment.id, content:props.newOne}
+        replies.push(newReplyObject)
+        setNewReply(newReplyObject)
+    },[props.newOne])
 
     const onHideShowClick = () =>{
         setHideShow(!hideShow)
@@ -26,7 +33,7 @@ const DisplayReplies = (props) => {
 
     return ( 
         <>
-        <button className="btns reply-btn" onClick={onHideShowClick}>Replies</button>
+        <button className="btns reply-btn" onClick={onHideShowClick}>{ hideShow ? 'Hide Replies' : 'See Replies' }</button>
         <div className="reply-box">
             {replies.map(function(reply){
                 return(

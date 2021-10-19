@@ -12,10 +12,10 @@ const DisplayComments = (props) => {
                 return(
                     <div className="comment-box">
                         <div className="row">
-                            <div className="col-9 comment-content">
+                            <div className="col-8 comment-content">
                                 <h6>{comment.content}</h6>
                             </div>
-                            <div className="col-md-3">
+                            <div className="col-md-4">
                                 <div className="row pt-1">
                                     <Like comment={comment}/>
                                 </div>
@@ -29,7 +29,7 @@ const DisplayComments = (props) => {
                             <ReplyModal commentId={comment.id} newReply={props.newReply}/>
                         </div>
                         <div>
-                            <DisplayReplies comment={comment}/>
+                            <DisplayReplies newOne={props.newOne} comment={comment}/>
                         </div>
                     </div>    
                 )

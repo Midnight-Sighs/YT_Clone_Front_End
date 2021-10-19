@@ -16,7 +16,7 @@ class ChatBox extends Component {
     render(){
         return ( 
             <div className="lowest-chat-box">
-                <DisplayComments newReply={this.props.newReply} comments={this.props.comments} />
+                <DisplayComments newOne={this.props.newOne} newReply={this.props.newReply} comments={this.props.comments} />
                 
             </div>
         );

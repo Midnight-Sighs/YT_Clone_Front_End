@@ -19,6 +19,11 @@ const LikeComment = (props) => {
         
     }, [like_counter]);
 
+    useEffect(()=>{
+
+    }, [props.comment])
+    
+
     const likeOnClick = () =>{
         likeComment(props.comment)
         console.log(like_counter)
