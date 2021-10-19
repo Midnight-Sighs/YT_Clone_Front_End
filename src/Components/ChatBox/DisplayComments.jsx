@@ -29,7 +29,7 @@ const DisplayComments = (props) => {
                             <ReplyModal commentId={comment.id} newReply={props.newReply}/>
                         </div>
                         <div>
-                            <DisplayReplies newOne={props.newOne} comment={comment}/>
+                            <DisplayReplies appCommentId={props.appCommentId} newOne={props.newOne} comment={comment.id}/>
                         </div>
                     </div>    
                 )

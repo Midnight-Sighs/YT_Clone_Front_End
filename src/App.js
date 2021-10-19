@@ -35,7 +35,7 @@ class App extends Component {
   //#region
   getVideo = async () => {
     try{
-        let response = await axios.get(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${this.state.searchTerm}&type=video&videoEmbeddable=true&relevanceLanguage=EN&order=relevance&key=AIzaSyCI3phO0sFUYY_0PnAha7ktzHJMH99UBBw`);
+        let response = await axios.get(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${this.state.searchTerm}&type=video&videoEmbeddable=true&relevanceLanguage=EN&order=relevance&key=AIzaSyDbUJDASYtcBDMWqkS2RwM40NuJogQcf8E`);
         this.setState({
           videoTitle: response.data.items[0].snippet.title,
           videoDescription: response.data.items[0].snippet.description,
@@ -52,7 +52,7 @@ class App extends Component {
 
   getRelatedVideo = async () => {
     try{
-      let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=${this.state.videoId}&maxResults=4&type=video&videoEmbeddable=true&relevanceLanguage=EN&order=relevance&key=AIzaSyCI3phO0sFUYY_0PnAha7ktzHJMH99UBBw`);
+      let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=${this.state.videoId}&maxResults=4&type=video&videoEmbeddable=true&relevanceLanguage=EN&order=relevance&key=AIzaSyDbUJDASYtcBDMWqkS2RwM40NuJogQcf8E`);
       this.setState({
         searchResults: response.data,
       })
@@ -155,7 +155,7 @@ class App extends Component {
             <div className = "col-4 dcr">
               <DescriptionBox newComment={this.newCommentState} post={this.newCommentPost} title={this.state.videoTitle} description={this.state.videoDescription} />
               <br />
-              <ChatBox newReply={this.newReplyState} newOne={this.state.newReply} comments={this.state.comments} videoId={this.state.videoId}/>
+              <ChatBox newReply={this.newReplyState} appCommentId={this.state.commentId} newOne={this.state.newReply} comments={this.state.comments} videoId={this.state.videoId}/>
             </div>
             <div className = "col-8 evp">
               <EmbeddedPlayer videoId={this.state.videoId} />

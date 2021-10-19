@@ -20,6 +20,7 @@
 
 .thumbnail-title {
   color: #c2c5c9;
+  width:75%;
   height: 100px;
   overflow: hidden;
   text-align: center;

@@ -9,7 +9,7 @@ const DisplayReplies = (props) => {
 
     const getAllReplies = async() =>{
         try{
-            let response = await axios.get(`http://127.0.0.1:8000/comments/${props.comment.id}/replies/`);
+            let response = await axios.get(`http://127.0.0.1:8000/comments/${props.comment}/replies/`);
             setReplies(response.data)
         }
         catch (ex){
@@ -22,9 +22,10 @@ const DisplayReplies = (props) => {
     },[props.comment]);
 
     useEffect(()=>{
-        let newReplyObject = {comment:props.comment.id, content:props.newOne}
-        replies.push(newReplyObject)
+        let newReplyObject = {comment:props.comment, content:props.newOne}
         setNewReply(newReplyObject)
+        if(newReply.comment==props.appCommentId){
+            replies.push(newReplyObject)}
     },[props.newOne])
 
     const onHideShowClick = () =>{

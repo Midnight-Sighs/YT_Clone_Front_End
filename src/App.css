@@ -1,4 +1,4 @@
-.bg{
+html, .bg{
   background-color: #0e1117;
 }
 
@@ -27,7 +27,7 @@
 
 ::-webkit-scrollbar{
   width:18px;
-  background-color: rgb(50,50,50);
+  background-color: #0e1117;
   border-radius: 10px;
 }
 

@@ -19,9 +19,12 @@ const Dislike = (props) => {
         
     }, [dislike_counter]);
 
+    useEffect(()=>{
+        setCounter(props.comment.dislike_counter)
+    }, [props.comment])
+
     const dislikeOnClick = () =>{
         dislikeComment(props.comment)
-        console.log(dislike_counter)
     }
 
     return ( 
